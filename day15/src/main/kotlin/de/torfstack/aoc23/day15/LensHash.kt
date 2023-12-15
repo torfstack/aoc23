@@ -38,12 +38,10 @@ class LensHash {
     }
 
     private fun label(ofInput: String): Pair<String, Int?> {
-        val labelRegex = "\\w+".toRegex()
-        val label = labelRegex.find(ofInput)!!.value
         if (ofInput[ofInput.length-1] == '-') {
-            return label to null
+            return ofInput.substring(0, ofInput.length-1) to null
         }
-        return label to ofInput.last().digitToInt()
+        return ofInput.substring(0, ofInput.length-2) to ofInput.last().digitToInt()
     }
 
     private fun computeHash(input: String): Int {
